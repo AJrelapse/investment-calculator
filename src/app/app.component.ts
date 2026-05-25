@@ -5,11 +5,21 @@ import { InvestmentResultsComponent } from './investment-results/investment-resu
 
 @Component({
   selector: 'app-root',
+  standalone:true,
   imports: [HeaderComponent, UserInputComponent, InvestmentResultsComponent ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+  resultsData?:{
+        year: number;
+        interest: number;
+        valueEndOfYear: number;
+        annualInvestment: number;
+        totalInterest: number;
+        totalAmountInvested: number;
+      }[];
+
     calculateInvestmentResults(data:{initialInvestment:number, duration:number, expectedReturn:number, annualInvestment:number}) {
     const{initialInvestment,annualInvestment,expectedReturn,duration}=data;
       const annualData = [];
@@ -30,6 +40,6 @@ export class AppComponent {
         totalAmountInvested: initialInvestment + annualInvestment * year,
       });
     }
-    console.log(annualData);
+    this.resultsData=annualData;
   }
 }

@@ -1,5 +1,5 @@
 <app-header/>
 <div>
   <app-user-input (calculate)="calculateInvestmentResults($event)"/>
-  <app-investment-results/>
+  <app-investment-results [results]="resultsData"/>
 </div>
